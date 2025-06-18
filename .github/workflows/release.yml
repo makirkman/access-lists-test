@@ -1,0 +1,54 @@
+name: Create Release Bundle
+
+on:
+  workflow_dispatch: # manual option TODO: Allow?
+    inputs:
+      release_tag:
+        description: "Specify a custom release tag (e.g., v1.0.0). If empty, a timestamped tag will be generated."
+        required: false
+        type: string
+
+      release_name:
+        description: 'Specify a custom release name. If empty, it will be "Release <tag>".'
+        required: false
+        type: string
+
+      is_draft:
+        description: "Create a draft release?"
+        required: false
+        type: boolean
+        default: false
+
+      is_prerelease:
+        description: "Create a pre-release?"
+        required: false
+        type: boolean
+        default: false
+
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - "data/**"
+      - "src/**"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Build and Publish Release
+        uses: ./.github/actions/release
+        with:
+          lists_dir: lists
+          release_tag: ${{ github.event.inputs.release_tag }}
+          release_name: ${{ github.event.inputs.release_name }}
+          is_draft: ${{ github.event.inputs.is_draft }}
+          is_prerelease: ${{ github.event.inputs.is_prerelease }}
+          token: ${{ secrets.GITHUB_TOKEN }}

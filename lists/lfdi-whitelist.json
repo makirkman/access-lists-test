@@ -1,0 +1,29 @@
+{
+  "accessLists": [
+    {
+      "name": "Trusted Certificate List",
+      "issueTime": "2024-11-19T10:00:00Z",
+      "since": "2024-01-01T00:00:00Z",
+      "recency": "complete",
+      "accessListType": "allow",
+      "listContentType": "certificate",
+      "scopes": ["australia", "csip"],
+      "content": [
+        {
+          "certificateId": "cert-001",
+          "certType": "x509",
+          "validity": "valid",
+          "classification": "trusted",
+          "riskScore": 0
+        },
+        {
+          "certificateId": "cert-002",
+          "certType": "JWT",
+          "validity": "valid",
+          "classification": "benign",
+          "riskScore": 10
+        }
+      ]
+    }
+  ]
+}

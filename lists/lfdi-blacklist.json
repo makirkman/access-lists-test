@@ -1,0 +1,30 @@
+{
+  "accessLists": [
+    {
+      "name": "Malicious Certificate List",
+      "issueTime": "2024-11-19T10:00:00Z",
+      "since": "2024-01-01T00:00:00Z",
+      "recency": "complete",
+      "accessListType": "deny",
+      "listContentType": "certificate",
+      "scopes": ["australia", "csip"],
+      "content": [
+        {
+          "certificateId": "cert-101",
+          "certType": "x509",
+          "validity": "revoked",
+          "classification": "malicious",
+          "riskScore": 90,
+          "tempDeleteMeAsWell": "This is also a test"
+        },
+        {
+          "certificateId": "cert-102",
+          "certType": "x509-CSIP",
+          "validity": "revoked",
+          "classification": "compromised",
+          "riskScore": 85
+        }
+      ]
+    }
+  ]
+}

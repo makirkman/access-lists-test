@@ -1,0 +1,25 @@
+{
+  "accessLists": [
+    {
+      "name": "Trusted IP List",
+      "issueTime": "2024-11-19T10:00:00Z",
+      "since": "2024-01-01T00:00:00Z",
+      "recency": "complete",
+      "accessListType": "allow",
+      "listContentType": "ip-address",
+      "scopes": ["global"],
+      "content": [
+        {
+          "ipAddress": "192.168.1.1",
+          "classification": "trusted",
+          "riskScore": 0
+        },
+        {
+          "ipAddress": "192.168.1.2",
+          "classification": "benign",
+          "riskScore": 5
+        }
+      ]
+    }
+  ]
+}

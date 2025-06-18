@@ -1,0 +1,25 @@
+{
+  "accessLists": [
+    {
+      "name": "Malicious IP List",
+      "issueTime": "2024-11-19T10:00:00Z",
+      "since": "2024-01-01T00:00:00Z",
+      "recency": "complete",
+      "accessListType": "deny",
+      "listContentType": "ip-address",
+      "scopes": ["internet"],
+      "content": [
+        {
+          "ipAddress": "203.0.113.1",
+          "classification": "malicious",
+          "riskScore": 95
+        },
+        {
+          "ipAddress": "203.0.113.2",
+          "classification": "compromised",
+          "riskScore": 90
+        }
+      ]
+    }
+  ]
+}
