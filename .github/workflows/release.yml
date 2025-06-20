@@ -32,8 +32,15 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+      - name: Check Out Action Repo
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: Capa-Intelligence/git-access-control
+          token: ${{ secrets.ACCESS_CONTROL_PAT }}
+          ref: v1.0.0
+
       - name: Build and Public Release
-        uses: Capa-Intelligence/git-access-control/.github/actions/release@v1.0.0
+        uses: ./.github/actions/release
         with:
           lists_dir: lists
           release_tag: ${{ inputs.release_tag }}
