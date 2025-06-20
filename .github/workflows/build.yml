@@ -1,15 +1,15 @@
-name: Build Lists (PR)
+name: Build Lists
 
 on:
-  workflow_dispatch: # manual option
-  pull_request:
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-
       - name: Run Validation and Build
-        uses: ./.github/actions/build
+        uses: Capa-Intelligence/git-access-control/.github/actions/build@v1.0.0
+        with:
+          lists_dir: lists
+          action_ref: v1.0.0
+          action_token: ${{ secrets.ACCESS_CONTROL_PAT }}

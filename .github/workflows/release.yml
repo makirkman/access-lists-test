@@ -1,4 +1,4 @@
-name: Create Release Bundle
+name: Create List Bundle Release
 
 on:
   workflow_dispatch: # manual option TODO: Allow?
@@ -17,21 +17,13 @@ on:
         description: "Create a draft release?"
         required: false
         type: boolean
-        default: false
+        default: true
 
       is_prerelease:
         description: "Create a pre-release?"
         required: false
         type: boolean
-        default: false
-
-  push:
-    branches:
-      - main
-      - master
-    paths:
-      - "data/**"
-      - "src/**"
+        default: true
 
 permissions:
   contents: write
@@ -40,15 +32,13 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-
-      - name: Build and Publish Release
-        uses: ./.github/actions/release
+      - name: Build and Public Release
+        uses: Capa-Intelligence/git-access-control/.github/actions/release@v1.0.0
         with:
           lists_dir: lists
-          release_tag: ${{ github.event.inputs.release_tag }}
-          release_name: ${{ github.event.inputs.release_name }}
-          is_draft: ${{ github.event.inputs.is_draft }}
-          is_prerelease: ${{ github.event.inputs.is_prerelease }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          release_tag: ${{ inputs.release_tag }}
+          release_name: ${{ inputs.release_name }}
+          is_draft: ${{ inputs.is_draft }}
+          is_prerelease: ${{ inputs.is_prerelease }}
+          action_ref: v1.0.0
+          action_token: ${{ secrets.ACCESS_CONTROL_PAT }}
